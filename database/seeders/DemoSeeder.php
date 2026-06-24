@@ -11,6 +11,7 @@ use App\Models\Parcelle;
 use App\Models\TestSol;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DemoSeeder extends Seeder
 {
@@ -19,19 +20,19 @@ class DemoSeeder extends Seeder
         // ---- Utilisateurs de démonstration (mot de passe : password) ----
         $chef = User::firstOrCreate(
             ['email' => 'tolou@suuf.test'],
-            ['name' => 'Tolou Ibou', 'password' => 'password', 'telephone' => '77 123 45 67', 'region' => 'Keur Mbaye']
+            ['name' => 'Tolou Ibou', 'password' => Hash::make('password'), 'telephone' => '77 123 45 67', 'region' => 'Keur Mbaye']
         );
         $chef->syncRoles('chef_exploitation');
 
         $prod = User::firstOrCreate(
             ['email' => 'awa@suuf.test'],
-            ['name' => 'Awa Diop', 'password' => 'password', 'region' => 'Darou Salam']
+            ['name' => 'Awa Diop', 'password' => Hash::make('password'), 'region' => 'Darou Salam']
         );
         $prod->syncRoles('producteur');
 
         $agent = User::firstOrCreate(
             ['email' => 'moussa@suuf.test'],
-            ['name' => 'Moussa Ba', 'password' => 'password', 'region' => 'Keur Mbaye']
+            ['name' => 'Moussa Ba', 'password' => Hash::make('password'), 'region' => 'Keur Mbaye']
         );
         $agent->syncRoles('agent_terrain');
 
